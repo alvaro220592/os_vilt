@@ -55,17 +55,17 @@
                     <ul class="flex flex-col px-4" :class="cadastros_expanded && show ? 'dropDown' : 'hidden'">
                         <li class="flex flex-row">
                             <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
+                            <span>Clientes</span>
                         </li>
 
                         <li class="flex flex-row">
                             <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
+                            <span>Materiais</span>
                         </li>
 
                         <li class="flex flex-row">
                             <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
+                            <span>Usuários</span>
                         </li>
 
                     </ul>
@@ -81,19 +81,13 @@
                     <ul class="flex flex-col px-4" :class="configuracoes_expanded && show ? 'dropDown' : 'hidden'">
                         <li class="flex flex-row">
                             <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
+                            <span>Alterar senha</span>
                         </li>
 
                         <li class="flex flex-row">
                             <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
+                            <span>Perfis de acesso</span>
                         </li>
-
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
-                        </li>
-
                     </ul>
                 </li>
 
