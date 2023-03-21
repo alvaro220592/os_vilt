@@ -1,0 +1,44 @@
+Instalar Font Awesome Icons
+
+    No terminal:
+        npm i --save @fortawesome/fontawesome-svg-core
+        npm i --save @fortawesome/free-solid-svg-icons
+        npm i --save @fortawesome/free-regular-svg-icons
+        npm i --save @fortawesome/free-brands-svg-icons
+
+    no app.js
+        import { library, dom } from "@fortawesome/fontawesome-svg-core";
+        import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+        import { fas } from '@fortawesome/free-solid-svg-icons'
+        import { fab } from '@fortawesome/free-brands-svg-icons';
+        import { far } from '@fortawesome/free-regular-svg-icons';
+        library.add(fas, far, fab)
+        dom.watch();
+
+    createApp(App)
+        .component("font-awesome-icon", FontAwesomeIcon)
+        .mount('#app')
+
+    No componente:
+        <i class="fa-solid fa-arrow-left"></i>
+        <i class="fa-brands fa-facebook"></i>
+
+======================================================
+
+Página Inicial: onde o usuário pode ter uma visão geral do sistema, com informações sobre o número de produtos em manutenção, as tarefas pendentes, etc.
+
+Gerenciamento de Clientes: nesta seção, é possível gerenciar informações sobre os clientes da empresa, incluindo seu nome, endereço, telefone, e-mail, etc.
+
+Gerenciamento de Produtos: nesta seção, é possível gerenciar informações sobre os produtos eletrônicos que estão em manutenção, incluindo marca, modelo, número de série, data de entrada, data de saída, etc.
+
+Status da Manutenção: aqui, é possível monitorar o status de cada produto em manutenção, desde a sua chegada até a sua conclusão.
+
+Histórico de Manutenção: nesta seção, é possível acessar o histórico de manutenção de cada produto, incluindo o tipo de reparo realizado, o tempo de reparo, o custo do serviço, entre outras informações.
+
+Agendamento de Serviços: nesta seção, é possível agendar um serviço de manutenção para um produto específico, definindo a data e hora em que o serviço será realizado.
+
+Orçamentos e Faturamento: nesta seção, é possível gerar orçamentos para os clientes e faturar os serviços realizados.
+
+Relatórios e Estatísticas: nesta seção, é possível gerar relatórios sobre o desempenho do sistema, incluindo estatísticas sobre o número de produtos em manutenção, a duração média do reparo, o custo médio do serviço, entre outras informações.
+
+Configurações: nesta seção, é possível configurar as opções do sistema, como a moeda utilizada para faturamento, as permissões de acesso dos usuários, etc.
