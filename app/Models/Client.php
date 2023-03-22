@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class Client extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'cep',
-        'logradouro',
-        'city_id'
+        'nome',
+        'sobrenome',
+        'cpf_cnpj',
+        'num_endereco',
+        'address_id'
     ];
-
-    public function clients(){
-        return $this->hasMany(Client::class, 'address_id');
-    }
 }
