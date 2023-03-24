@@ -18,4 +18,8 @@ class Address extends Model
     public function clients(){
         return $this->hasMany(Client::class, 'address_id');
     }
+
+    public function city(){
+        return $this->belongsTo(City::class, 'city_id');
+    }
 }

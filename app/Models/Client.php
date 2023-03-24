@@ -16,4 +16,16 @@ class Client extends Model
         'num_endereco',
         'address_id'
     ];
+
+    public function address(){
+        return $this->belongsTo(Address::class, 'address_id');
+    }
+
+    public function city(){
+        return $this->belongsToThrough(City::class, Address::class);
+    }
+
+    public function state(){
+        return $this->belongsToThrough(State::class, City::class, null, null, null, 'state_id');
+    }
 }

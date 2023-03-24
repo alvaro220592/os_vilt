@@ -13,7 +13,7 @@
             :key="index"
             :href="link.url"
             class="py-1 px-2 rounded-sm"
-            :class="{'bg-teal-500 text-white' : link.active}"
+            :class="{'bg-teal-600 text-white' : link.active}"
             preserve-scroll
             v-html="link.label">
         </Link>

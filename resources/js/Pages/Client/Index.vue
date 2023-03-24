@@ -9,6 +9,7 @@
                             <th scope="col" class="text-md font-bold text-gray-600 px-6 py-1 text-left">ID</th>
                             <th scope="col" class="text-md font-bold text-gray-600 px-6 py-1 text-left">Nome</th>
                             <th scope="col" class="text-md font-bold text-gray-600 px-6 py-1 text-left">CPF/CNPJ</th>
+                            <th scope="col" class="text-md font-bold text-gray-600 px-6 py-1 text-left">Logradouro</th>
                             <th scope="col" class="text-md font-bold text-gray-600 px-6 py-1 text-center">Ações</th>
                         </tr>
                     </thead>
@@ -17,6 +18,7 @@
                             <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.id }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.nome }} {{ client.sobrenome }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.cpf_cnpj }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.address.logradouro }}, {{ client.num_endereco }}, {{ client.address.city.cidade }} - {{ client.address.city.state.sigla }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap flex justify-center items-center"><TableActions :visualizar="route('clients.show', client.id)" :editar="route('clients.edit', client.id)" :excluir="route('clients.destroy', client.id)" /></td>
                         </tr>
                     </tbody>

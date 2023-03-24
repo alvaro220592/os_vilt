@@ -9,7 +9,7 @@ class ClientController extends Controller
 {
     public function index(){
         return inertia('Client/Index', [
-            'clients' => Client::paginate(5)
+            'clients' => Client::with('address.city.state')->paginate(5)
         ]);
     }
     
