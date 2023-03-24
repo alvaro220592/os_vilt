@@ -19,30 +19,14 @@
                 </li>
 
                 <li class="block">
-                    <div class="flex cursor-pointer" @click="dashboard_expanded = !dashboard_expanded">
-                        <font-awesome-icon icon="fa-solid fa-chart-simple" class="menu_li my-5 text-2xl" />
-                        <span class="my-5 mx-4" :class="show ? '' : 'hidden'">
-                            Dashboard
-                        </span>
-                    </div>
-                    <ul class="flex flex-col px-4" :class="dashboard_expanded && show ? 'dropDown' : 'hidden'">
-                    <!-- <ul class="flex flex-col px-4"> -->
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
-                        </li>
-
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
-                        </li>
-
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>teste</span>
-                        </li>
-
-                    </ul>
+                    <Link href="/dashboard" preserve-state>
+                        <div class="flex">
+                            <font-awesome-icon icon="fa-solid fa-chart-simple" class="menu_li my-5 text-2xl" />
+                            <span class="my-5 mx-4" :class="show ? '' : 'hidden'">
+                                Dashboard
+                            </span>
+                        </div>
+                    </Link>
                 </li>
 
                 <li class="block">
@@ -53,10 +37,12 @@
                         </span>
                     </div>
                     <ul class="flex flex-col px-4" :class="cadastros_expanded && show ? 'dropDown' : 'hidden'">
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>Clientes</span>
-                        </li>
+                        <Link :href="route('clients.index')">
+                            <li class="flex flex-row">
+                                <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
+                                <span>Clientes</span>
+                            </li>
+                        </Link>
 
                         <li class="flex flex-row">
                             <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
@@ -107,6 +93,8 @@
 
 <script setup>
     import { ref } from 'vue';
+    import { Link } from '@inertiajs/vue3'
+
     const dashboard_expanded = ref(false)
     const cadastros_expanded = ref(false)
     const configuracoes_expanded = ref(false)

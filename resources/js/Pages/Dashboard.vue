@@ -1,26 +1,29 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+    import { Head } from '@inertiajs/vue3';
+</script>
+
+<script>
+    export default {
+        layout: AuthenticatedLayout
+    }
 </script>
 
 <template>
     <Head title="Dashboard" />
 
-    <AuthenticatedLayout>
-        <template #header>
+    <!-- <AuthenticatedLayout> -->
+        <!-- <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Dashboard</h2>
-        </template>
+        </template> -->
 
-        <div class="py-12 px-2">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     
                     <!-- <div class="flex flex-col p-2">
                         <div class="overflow-x-auto bg-white">
                             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="overflow-hidden">
                                     <table class="min-w-full"> -->
-                    <div class="flex flex-col p-2">
+                    
                         <div class="overflow-x-auto bg-white">
                             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="overflow-x-auto">
@@ -57,10 +60,5 @@ import { Head } from '@inertiajs/vue3';
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </AuthenticatedLayout>
+    <!-- </AuthenticatedLayout> -->
 </template>

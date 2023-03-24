@@ -21,7 +21,7 @@ const show = ref(false);
 
         <!-- Parte à direita da sidebar -->
         <section
-            class="block bg-red-200 h-screen transition-all duration-500"
+            class="block bg-red-200 h-screen overflow-auto transition-all duration-500"
             :class="show ? 'section_sidebar_expanded' : 'section_sidebar_collapsed'"
         >
             <!-- <div class="h-screen blur" :class="show ? '' : 'hidden'"></div> -->
@@ -47,9 +47,18 @@ const show = ref(false);
             </div> -->
 
             <!-- Page Content -->
-            <main>
-                <slot />
-            </main>
+
+            <div class="py-12 px-2">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-4">
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-sm">
+                        <div class="flex flex-col p-2">
+                            <main>
+                                <slot />
+                            </main>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </template>
