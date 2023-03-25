@@ -1,145 +1,70 @@
 <template>
-    <!-- <div v-if="show" class="h-screen fixed top-0 w-full bg-black/25 backdrop-blur"></div> -->
-
-    <aside 
-        class="fixed bg-teal-600  text-white h-screen top-0 transition-all duration-500 p-3"
-        :class="show ? 'sidebar_expanded' : 'sidebar_collapsed'"
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div
+      class="bg-gray-900 text-white w-64 flex flex-col justify-between items-center transition-all duration-300"
+      :class="{ '-translate-x-full': !isOpen }"
     >
-        <!-- <div class="text-end h-10 overflow-hidden">
-            <font-awesome-icon @click="$emit('close')" icon="fa-regular fa-circle-xmark" class="cursor-pointer mt-2 text-2xl ml-9 transition-all duration-500" :class="show ? '' : 'hidden'" />
-        </div> -->
+      <!-- Sidebar content -->
+      <div class="w-full h-full flex flex-col justify-between">
+        <nav class="mt-8">
+          <ul>
+            <li>
+              <Link
+                to="/dashboard"
+                class="block py-2 px-4 hover:bg-gray-700 transition duration-300"
+              >
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/users"
+                class="block py-2 px-4 hover:bg-gray-700 transition duration-300"
+              >
+                Users
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/settings"
+                class="block py-2 px-4 hover:bg-gray-700 transition duration-300"
+              >
+                Settings
+              </Link>
+            </li>
+          </ul>
+        </nav>
 
-        <!-- <slot></slot> -->
+        <button
+          class="block py-2 px-4 text-left hover:bg-gray-700 transition duration-300"
+          @click="isOpen = !isOpen"
+        >
+          Toggle Sidebar
+        </button>
+      </div>
+    </div>
 
-            <ul class="menu_ul overflow-x-hidden">
-                
-                <li class="block">
-                    <font-awesome-icon @click="this.$emit('toggle_sidebar')" icon="fa-solid fa-bars" class="mt-2 mb-10 cursor-pointer text-white text-2xl" />
-                    <!-- <font-awesome-icon @click="show = !show" icon="fa-solid fa-bars" class="mt-2 mb-10 cursor-pointer text-white text-2xl" /> -->
-                </li>
-
-                <li class="block">
-                    <Link href="/dashboard" preserve-state>
-                        <div class="flex">
-                            <font-awesome-icon icon="fa-solid fa-chart-simple" class="menu_li my-5 text-2xl" />
-                            <span class="my-5 mx-4" :class="show ? '' : 'hidden'">
-                                Dashboard
-                            </span>
-                        </div>
-                    </Link>
-                </li>
-
-                <li class="block">
-                    <div class="flex cursor-pointer" @click="cadastros_expanded = !cadastros_expanded">
-                        <font-awesome-icon icon="fa-solid fa-square-plus" class="menu_li my-5 text-2xl" />
-                        <span class="my-5 mx-4" :class="show ? '' : 'hidden'">
-                            Cadastros
-                        </span>
-                    </div>
-                    <ul class="flex flex-col px-4" :class="cadastros_expanded && show ? 'dropDown' : 'hidden'">
-                        <Link :href="route('clients.index')">
-                            <li class="flex flex-row">
-                                <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                                <span>Clientes</span>
-                            </li>
-                        </Link>
-
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>Materiais</span>
-                        </li>
-
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>Usuários</span>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li class="block">
-                    <div class="flex cursor-pointer" @click="configuracoes_expanded = !configuracoes_expanded">
-                        <font-awesome-icon icon="fa-solid fa-gear" class="menu_li my-5 text-2xl" />
-                        <span class="my-5 mx-4" :class="show ? '' : 'hidden'">
-                            Configurações
-                        </span>
-                    </div>
-                    <ul class="flex flex-col px-4" :class="configuracoes_expanded && show ? 'dropDown' : 'hidden'">
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>Alterar senha</span>
-                        </li>
-
-                        <li class="flex flex-row">
-                            <font-awesome-icon icon="fa-regular fa-snowflake" class="mx-2 my-1" />
-                            <span>Perfis de acesso</span>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="block">
-                    <div class="flex cursor-pointer">
-                        <font-awesome-icon icon="fa-solid fa-power-off" class="menu_li my-5 text-2xl" />
-                        <span class="my-5 mx-4" :class="show ? '' : 'hidden'">
-                            Sair
-                        </span>
-                    </div>
-                </li>
-
-            </ul>
-    </aside>
-
+    <!-- Main content -->
+    <div class="flex-1 bg-gray-100">
+      <router-link :to="selectedTab" class="absolute top-4 right-4">
+        Close
+      </router-link>
+      <component :is="selectedTab"></component>
+    </div>
+  </div>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
-    import { Link } from '@inertiajs/vue3'
+import { ref } from 'vue'
+import { Link } from '@inertiajs/vue3'
 
-    const dashboard_expanded = ref(false)
-    const cadastros_expanded = ref(false)
-    const configuracoes_expanded = ref(false)
+const isOpen = ref(true)
+const selectedTab = ref('dashboard')
 
-    defineProps({
-        show: Boolean
-    })
-
-    defineEmits([
-        'close',
-        'toggle_sidebar'
-    ])
-
+// export { isOpen, selectedTab, Link }
 </script>
 
-<style scoped>
-
-    .sidebar_expanded{
-        width: 180px;
-    }
-
-    .sidebar_collapsed{
-        width: 48px;
-    }
-
-    .menu_ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-
-    .dropDown {
-        animation: dropDown .3s ease-in-out forwards;
-        transform-origin: top center
-    }
-
-    @keyframes dropDown {
-        0% {
-            transform: scaleY(0)
-        }
-        /* 80% {
-            transform: scaleY(1.5)
-        } */
-        100% {
-            transform: scaleY(1)
-        }
-    }
+<style>
+/* ... */
 </style>

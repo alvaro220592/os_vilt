@@ -1,87 +1,111 @@
-<script setup>
-import { ref } from "vue";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import Dropdown from "@/Components/Dropdown.vue";
-import DropdownLink from "@/Components/DropdownLink.vue";
-import NavLink from "@/Components/NavLink.vue";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
-import { Link } from "@inertiajs/vue3";
-import Sidebar from "@/Components/Sidebar/Sidebar.vue";
-import Navbar from "@/Components/Navbar/Navbar.vue";
-
-const showingNavigationDropdown = ref(false);
-const show = ref(false);
-</script>
-
 <template>
-    <div class="flex w-full">
-        <!-- container geral -->
-
-        <Sidebar :show="show" @close="show = false" @toggle_sidebar="show = !show"></Sidebar>
-
-        <!-- Parte à direita da sidebar -->
-        <section
-            class="block bg-red-200 h-screen overflow-auto transition-all duration-500"
-            :class="show ? 'section_sidebar_expanded' : 'section_sidebar_collapsed'"
-        >
-            <!-- <div class="h-screen blur" :class="show ? '' : 'hidden'"></div> -->
-            
-
-            <!-- <Navbar @toggle_sidebar="show = !show"></Navbar> -->
-            <Navbar></Navbar>
-
-            <!-- Div que dá blur na tela quando expande a sidebar -->            
-            <!-- ORIGINAL -->
-            <!-- <div v-if="show" class="section_sidebar_expanded h-screen fixed top-0 right-0 bg-black/25 backdrop-blur"></div> -->
-            
-            <!-- VIGENTE -->
-            <div 
-                class="transition-all duration-500" 
-                :class="show ? 'fixed top-0 right-0 h-screen bg-black/25 backdrop-blur section_sidebar_expanded' : 'section_sidebar_collapsed'">
-            </div>
-
-            <!-- TESTE -->
-            <!-- <div 
-                class="transition-all duration-500" 
-                :class="show ? 'fixed top-0 right-0 h-screen bg-black/25 backdrop-blur section_sidebar_expanded'  : ''">
-            </div> -->
-
-            <!-- Page Content -->
-
-            <div class="py-12 px-2">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-4">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-sm">
-                        <div class="flex flex-col p-2">
-                            <main>
-                                <slot />
-                            </main>
-                        </div>
+  <aside
+    :class="{'w-12': !isOpen, 'w-64': isOpen}"
+    class="bg-gray-800 text-white h-screen fixed top-0 left-0 z-30 transition-all duration-500"
+  >
+    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">
+        <button class="text-gray-500 hover:text-white focus:outline-none" @click="isOpen = !isOpen">
+            <font-awesome-icon icon="fa-solid fa-bars" />        
+        </button>
+    </div>
+    
+    <div class="px-2 pt-2 pb-4 menus">
+        <ul class="mt-10">
+            <li class="my-4 cursor-pointer">
+                <div @click="toggleSubmenu($event.currentTarget)">
+                    <div class="flex flex-row whitespace-nowrap py-1">
+                        <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-plus" /></span>
+                        <span class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}">Cadastros</span>
+                    </div>
+                    <div class="submenu ml-5" :class="{'hidden' : !isOpen}">
+                        <ul class="mt-3">
+                            <li>
+                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
+                                submenu
+                            </li>
+                            <li>
+                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
+                                submenu
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </li>
+
+            <li class="my-4 cursor-pointer">
+                <div @click="toggleSubmenu($event.currentTarget)">
+                    <div class="flex flex-row whitespace-nowrap py-1">
+                        <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-gear" /></span>
+                        <span class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}">Configurações</span>
+                    </div>
+                    
+                    <div class="submenu ml-5" :class="{'hidden' : !isOpen}">
+                        <ul class="mt-3">
+                            <li>
+                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
+                                submenu
+                            </li>
+                            <li>
+                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
+                                submenu
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="my-4 cursor-pointer">
+                <div class="flex flex-row py-1">
+                    <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-power-off" /></span>
+                    <span class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}">Sair</span>
+                </div>
+            </li>
+
+            <Menu nomeMenu="TESTE" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''">
+                <Submenu nomeSubmenu="sub1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}" />
+                <Submenu nomeSubmenu="sub2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}" />
+                <Submenu nomeSubmenu="sub3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}" />
+            </Menu>
+
+        </ul>
     </div>
+  </aside>
+  <div class="ml-50 py-10 px-4 bg-purple-500">
+    <h1 class="text-2xl font-bold mb-4">Bem-vindo!</h1>
+    <p>Esta é uma pequena frase de exemplo para demonstrar o conteúdo principal da página. <span @click="teste()" id="a">a</span>&nbsp;&nbsp;&nbsp;<span id="b" @click="teste()">b</span></p>
+  </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import { Link } from '@inertiajs/vue3'
+import Menu from '@/Components/Sidebar/Menu.vue'
+import Submenu from '@/Components/Sidebar/Submenu.vue'
+
+const isOpen = ref(true)
+
+// Esta função foi comentada porque está sendo implantado o menu por componentes e o objetivo é vir de la
+// const toggleSubmenu = function(elemento) {
+//     let classes = ['transition-all', 'duration-500', 'bg-purple-800', 'rounded-sm']
+//     classes.forEach(classe => {
+//         elemento.firstChild.classList.toggle(classe)
+//     })
+//     let submenu = elemento.querySelector('.submenu')
+//     submenu.classList.toggle('exibir')
+// }
+
+</script>
+
 <style>
-    .section_sidebar_expanded {
-        width: calc(100% - 180px);
-        margin-left: 180px;
-    }
-
-    .section_sidebar_collapsed {
-        margin-left: 46px;
-        width: calc(100% - 46px);
-    }
-
-    @media only screen and (max-width: 600px) {
-        .blur {
-            min-height: 100vh;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            background-color: #000000;
-            opacity: 0.5;
-        }
-    }
+.submenu {
+    opacity: 0;
+    transition: .5s;
+    max-height: 0px;
+    overflow: hidden;
+}
+.exibir {
+    opacity: 1;
+    transition: .5s;
+    max-height: 100vh;
+}
 </style>
