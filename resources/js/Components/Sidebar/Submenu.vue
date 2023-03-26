@@ -1,8 +1,8 @@
 <template>
-        <li class="flex flex-row">
-            <Link :href="url">
+        <li>
+            <Link :href="url" class="flex flex-row py-1 px-2 rounded-sm transition-all duration-200 hover:bg-gray-700">
                 <span>
-                    <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
+                    <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2 text-xs" />
                 </span>
                 <span>
                     {{ nomeSubmenu }}

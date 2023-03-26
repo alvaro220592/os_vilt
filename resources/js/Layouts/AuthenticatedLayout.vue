@@ -4,69 +4,27 @@
     class="bg-gray-800 text-white h-screen fixed top-0 left-0 z-30 transition-all duration-500"
   >
     <div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-        <button class="text-gray-500 hover:text-white focus:outline-none" @click="isOpen = !isOpen">
+        <button class="text-gray-500 hover:text-white focus:outline-none" @click="toggleSidebar">
             <font-awesome-icon icon="fa-solid fa-bars" />        
         </button>
     </div>
     
     <div class="px-2 pt-2 pb-4 menus">
         <ul class="mt-10">
-            <li class="my-4 cursor-pointer">
-                <div @click="toggleSubmenu($event.currentTarget)">
-                    <div class="flex flex-row whitespace-nowrap py-1">
-                        <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-plus" /></span>
-                        <span class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}">Cadastros</span>
-                    </div>
-                    <div class="submenu ml-5" :class="{'hidden' : !isOpen}">
-                        <ul class="mt-3">
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
-                                submenu
-                            </li>
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
-                                submenu
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-
-            <li class="my-4 cursor-pointer">
-                <div @click="toggleSubmenu($event.currentTarget)">
-                    <div class="flex flex-row whitespace-nowrap py-1">
-                        <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-gear" /></span>
-                        <span class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}">Configurações</span>
-                    </div>
-                    
-                    <div class="submenu ml-5" :class="{'hidden' : !isOpen}">
-                        <ul class="mt-3">
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
-                                submenu
-                            </li>
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2" />
-                                submenu
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-
-            <li class="my-4 cursor-pointer">
-                <div class="flex flex-row py-1">
-                    <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-power-off" /></span>
-                    <span class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}">Sair</span>
-                </div>
-            </li>
-
-            <Menu nomeMenu="TESTE" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''">
-                <Submenu nomeSubmenu="sub1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}" />
-                <Submenu nomeSubmenu="sub2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}" />
-                <Submenu nomeSubmenu="sub3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'opacity-0' : !isOpen}" />
+            <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                <Submenu nomeSubmenu="cad3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
             </Menu>
 
+            <Menu nomeMenu="Configurações" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                <Submenu nomeSubmenu="cfg1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                <Submenu nomeSubmenu="cfg2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                <Submenu nomeSubmenu="cfg3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+            </Menu>
+
+            <Menu nomeMenu="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
+            </Menu>
         </ul>
     </div>
   </aside>
@@ -84,15 +42,33 @@ import Submenu from '@/Components/Sidebar/Submenu.vue'
 
 const isOpen = ref(true)
 
-// Esta função foi comentada porque está sendo implantado o menu por componentes e o objetivo é vir de la
-// const toggleSubmenu = function(elemento) {
-//     let classes = ['transition-all', 'duration-500', 'bg-purple-800', 'rounded-sm']
-//     classes.forEach(classe => {
-//         elemento.firstChild.classList.toggle(classe)
-//     })
-//     let submenu = elemento.querySelector('.submenu')
-//     submenu.classList.toggle('exibir')
-// }
+const toggleSidebar = function () {
+    // Este é o toggle para exibir/ocultar
+    isOpen.value = !isOpen.value
+
+    // Animações ao clicar nos menus para abrir os submenus
+    const classesEstiloMenus = ['transition-all', 'duration-500', 'bg-purple-800', 'rounded-sm']
+
+    // Quando o toggle é para ocultar
+    if (isOpen.value == false) {
+
+        // Removendo as classes de estilização usadas ao abrir os submenus ao clicar em algum menu. Essas classes são inseridas no primeiro elemento filho do elemento com classe 'menu' para que os submenus não fiquem estilizados também ao abrirem
+        let menus = document.querySelectorAll('.menu')
+        menus.forEach(menu => {
+            classesEstiloMenus.forEach(classe => {
+                if (menu.firstChild.classList.contains(classe)) {
+                    menu.firstChild.classList.remove(classe)
+                }
+            })
+        })
+
+        // Removendo dos submenus a classe 'exibir', adquirida na função 'toggleSubmenu' ao abrir o submenu do compomente Menu
+        let submenus = document.querySelectorAll('.submenu')
+        submenus.forEach(submenu => {
+            submenu.classList.remove('exibir')
+        })
+    }
+}
 
 </script>
 
