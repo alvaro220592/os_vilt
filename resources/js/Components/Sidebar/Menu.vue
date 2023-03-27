@@ -1,5 +1,5 @@
 <template>
-    <li class="menu my-4" @click="toggleSubmenu($event.currentTarget)" :expande="expande" >        
+    <li class="menu my-4" @click="toggleSubmenu($event.currentTarget)" :expande="expande" >
         <div class="flex flex-row whitespace-nowrap py-1 cursor-pointer hover:bg-purple-800 transition-all duration-200 rounded-sm">
             <span class="ml-2 mr-4"><font-awesome-icon :icon="icone" /></span>
             <span class="transition ease-in-out delay-150" :class="classeDinamica">{{ nomeMenu }}</span>

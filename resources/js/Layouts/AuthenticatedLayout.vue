@@ -1,37 +1,56 @@
 <template>
-  <aside
-    :class="{'w-12': !isOpen, 'w-64': isOpen}"
-    class="bg-gray-800 text-white h-screen fixed top-0 left-0 z-30 transition-all duration-500"
-  >
-    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-        <button class="text-gray-500 hover:text-white focus:outline-none" @click="toggleSidebar">
-            <font-awesome-icon icon="fa-solid fa-bars" />        
-        </button>
-    </div>
-    
-    <div class="px-2 pt-2 pb-4 menus">
-        <ul class="mt-10">
-            <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
-                <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
-                <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
-                <Submenu nomeSubmenu="cad3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
-            </Menu>
+    <div class="flex flex-row min-h-screen overflow-y-auto">
+        <aside :class="{'w-12': !isOpen, 'w-64 sm:relative fixed': isOpen}" class="bg-gray-800 text-white min-h-screen top-0 xs:fixed left-0 z-30 transition-all duration-500">
+            
+            <!-- <div class="flex items-center justify-between px-4 py-3 h-16 border-b border-gray-700"> -->
+                <!-- <button class="text-gray-500 m-auto hover:text-white focus:outline-none" @click="toggleSidebar">
+                    <font-awesome-icon icon="fa-solid fa-bars" />        
+                </button> -->
+                <!-- <div class="flex flex-row whitespace-nowrap py-1 cursor-pointer hover:bg-purple-800 transition-all duration-200 rounded-sm">
+                    <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
+                    <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Nome Marca</span>
+                </div>
+            </div> -->
+            
+                <div class="flex flex-row whitespace-nowrap py-1 cursor-pointer hover:bg-purple-800 transition-all duration-200 rounded-sm">
+                    <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
+                    <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Nome Marca</span>
+                </div>
+                
+            
+            <div class="px-2 pt-2 pb-4 menus">
+                <ul class="mt-10">
+                    <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                        <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                        <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                        <Submenu nomeSubmenu="cad3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                    </Menu>
 
-            <Menu nomeMenu="Configurações" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
-                <Submenu nomeSubmenu="cfg1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
-                <Submenu nomeSubmenu="cfg2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
-                <Submenu nomeSubmenu="cfg3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
-            </Menu>
+                    <Menu nomeMenu="Configurações" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                        <Submenu nomeSubmenu="cfg1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                        <Submenu nomeSubmenu="cfg2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                        <Submenu nomeSubmenu="cfg3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                    </Menu>
 
-            <Menu nomeMenu="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
-            </Menu>
-        </ul>
+                    <Menu nomeMenu="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
+                    </Menu>
+                </ul>
+            </div>
+        </aside>
+        <main class="w-full bg-orange-500">
+            <div class="h-16 bg-gray-800 w-full px-4 flex items-center">
+                <button class="text-gray-500 hover:text-white focus:outline-none" @click="toggleSidebar">
+                    <font-awesome-icon icon="fa-solid fa-bars" />        
+                </button>
+            </div>
+
+            <div class="p-2">
+                <div class="bg-gray-800 rounded-sm p-4 text-white">
+                    <h1 class="text-2xl font-bold mb-4">Bem-vindo!</h1>
+                </div>
+            </div>
+        </main>
     </div>
-  </aside>
-  <div class="ml-50 py-10 px-4 bg-purple-500">
-    <h1 class="text-2xl font-bold mb-4">Bem-vindo!</h1>
-    <p>Esta é uma pequena frase de exemplo para demonstrar o conteúdo principal da página. <span @click="teste()" id="a">a</span>&nbsp;&nbsp;&nbsp;<span id="b" @click="teste()">b</span></p>
-  </div>
 </template>
 
 <script setup>
