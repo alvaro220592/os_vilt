@@ -15,6 +15,7 @@
             <div class="flex flex-row whitespace-nowrap px-1 py-5 text-2xl">
                 <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
                 <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Marca Aqui</span>
+                <font-awesome-icon icon="fa-solid fa-circle-chevron-left" class="right-0 ml-5 mt-1 text-3xl absolute text-orange-500 md:hidden" :class="{'hidden' : !isOpen}" @click="toggleSidebar" />
             </div>                
             
             <div class="px-2 pt-2 pb-4 menus">
@@ -39,7 +40,7 @@
         <main class="w-full bg-orange-500">
             <div class="h-16 bg-gray-800 w-full px-4 flex">
                 <button class="text-gray-500 hover:text-white focus:outline-none" @click="toggleSidebar">
-                    <font-awesome-icon icon="fa-solid fa-bars" />        
+                    <font-awesome-icon icon="fa-solid fa-bars" />
                 </button>
             </div>
 
