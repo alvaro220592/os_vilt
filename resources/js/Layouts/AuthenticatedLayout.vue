@@ -1,21 +1,17 @@
 <template>
-    <div class="flex flex-row min-h-screen overflow-y-auto">
+    <div class="flex flex-nowrap flex-row min-h-screen overflow-y-auto">
         <aside :class="{'w-12': !isOpen, 'w-64 sm:relative fixed': isOpen}" class="overflow-x-hidden bg-gray-800 text-white min-h-screen top-0 xs:fixed left-0 z-30 transition-all duration-500">
             
             <!-- <div class="flex items-center justify-between px-4 py-3 h-16 border-b border-gray-700"> -->
                 <!-- <button class="text-gray-500 m-auto hover:text-white focus:outline-none" @click="toggleSidebar">
                     <font-awesome-icon icon="fa-solid fa-bars" />        
-                </button> -->
-                <!-- <div class="flex flex-row whitespace-nowrap py-1 cursor-pointer hover:bg-purple-800 transition-all duration-200 rounded-sm">
-                    <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
-                    <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Nome Marca</span>
-                </div>
+                </button>
             </div> -->            
                 
-            <div class="flex flex-row whitespace-nowrap px-1 py-5 text-2xl">
+            <div class="flex flex-row whitespace-nowrap px-1 py-4 text-2xl border-b border-gray-700">
                 <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
                 <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Marca Aqui</span>
-                <font-awesome-icon icon="fa-solid fa-circle-chevron-left" class="right-0 ml-5 mt-1 text-3xl absolute text-orange-500 md:hidden" :class="{'hidden' : !isOpen}" @click="toggleSidebar" />
+                <font-awesome-icon icon="fa-solid fa-circle-chevron-left" class="right-0 ml-5 mt-1 text-3xl absolute overflow-x-visible text-orange-500 md:hidden" :class="{'hidden' : !isOpen}" @click="toggleSidebar" />
             </div>                
             
             <div class="px-2 pt-2 pb-4 menus">
