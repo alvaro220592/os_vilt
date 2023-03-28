@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-row min-h-screen overflow-y-auto">
-        <aside :class="{'w-12': !isOpen, 'w-64 sm:relative fixed': isOpen}" class="bg-gray-800 text-white min-h-screen top-0 xs:fixed left-0 z-30 transition-all duration-500">
+        <aside :class="{'w-12': !isOpen, 'w-64 sm:relative fixed': isOpen}" class="overflow-x-hidden bg-gray-800 text-white min-h-screen top-0 xs:fixed left-0 z-30 transition-all duration-500">
             
             <!-- <div class="flex items-center justify-between px-4 py-3 h-16 border-b border-gray-700"> -->
                 <!-- <button class="text-gray-500 m-auto hover:text-white focus:outline-none" @click="toggleSidebar">
@@ -10,13 +10,12 @@
                     <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
                     <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Nome Marca</span>
                 </div>
-            </div> -->
-            
-                <div class="flex flex-row whitespace-nowrap py-1 cursor-pointer hover:bg-purple-800 transition-all duration-200 rounded-sm">
-                    <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
-                    <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Nome Marca</span>
-                </div>
+            </div> -->            
                 
+            <div class="flex flex-row whitespace-nowrap px-1 py-5 text-2xl">
+                <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
+                <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Marca Aqui</span>
+            </div>                
             
             <div class="px-2 pt-2 pb-4 menus">
                 <ul class="mt-10">
@@ -38,7 +37,7 @@
             </div>
         </aside>
         <main class="w-full bg-orange-500">
-            <div class="h-16 bg-gray-800 w-full px-4 flex items-center">
+            <div class="h-16 bg-gray-800 w-full px-4 flex">
                 <button class="text-gray-500 hover:text-white focus:outline-none" @click="toggleSidebar">
                     <font-awesome-icon icon="fa-solid fa-bars" />        
                 </button>
