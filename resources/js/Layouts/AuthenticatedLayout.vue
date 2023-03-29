@@ -42,7 +42,7 @@
             </div>
 
             <div class="p-2">
-                <div class="bg-gray-800 rounded-sm p-4 text-black">
+                <div class="bg-gray-800 rounded-sm p-4 text-white">
                     <h1 class="text-2xl font-bold mb-4">Bem-vindo!</h1>
         
                     <slot />
