@@ -20,6 +20,16 @@
     })
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.submenu {
+    opacity: 0;
+    transition: .5s;
+    max-height: 0px;
+    overflow: hidden;
+}
+.exibir {
+    opacity: 1;
+    transition: .5s;
+    max-height: 100vh;
+}
 </style>

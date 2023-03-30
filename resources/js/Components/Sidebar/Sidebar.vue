@@ -1,70 +1,48 @@
 <template>
-  <div class="flex h-screen">
-    <!-- Sidebar -->
-    <div
-      class="bg-gray-900 text-white w-64 flex flex-col justify-between items-center transition-all duration-300"
-      :class="{ '-translate-x-full': !isOpen }"
-    >
-      <!-- Sidebar content -->
-      <div class="w-full h-full flex flex-col justify-between">
-        <nav class="mt-8">
-          <ul>
-            <li>
-              <Link
-                to="/dashboard"
-                class="block py-2 px-4 hover:bg-gray-700 transition duration-300"
-              >
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/users"
-                class="block py-2 px-4 hover:bg-gray-700 transition duration-300"
-              >
-                Users
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/settings"
-                class="block py-2 px-4 hover:bg-gray-700 transition duration-300"
-              >
-                Settings
-              </Link>
-            </li>
-          </ul>
-        </nav>
+    <aside :open="isOpen" :class="{'w-12': !isOpen, 'w-64 sm:relative fixed': isOpen}" class="bg-gray-800 text-white min-h-screen top-0 xs:fixed left-0 z-30 transition-all duration-500">
+        <div class="flex flex-row whitespace-nowrap px-1 py-4 text-2xl border-b border-gray-700 overflow-hidden">
+            <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
+            <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Marca Aqui</span>
+            <font-awesome-icon icon="fa-solid fa-circle-chevron-left" class="right-0 ml-5 mt-1 text-3xl absolute overflow-x-visible text-orange-500 md:hidden" :class="{'hidden' : !isOpen}" @click="toggleSidebar" />
+        </div>                
+        
+        <div class="px-2 pt-2 pb-4 menus overflow-hidden">
+            <ul class="mt-10">
+                <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                    <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                    <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                    <Submenu nomeSubmenu="cad3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                </Menu>
 
-        <button
-          class="block py-2 px-4 text-left hover:bg-gray-700 transition duration-300"
-          @click="isOpen = !isOpen"
-        >
-          Toggle Sidebar
-        </button>
-      </div>
-    </div>
+                <Menu nomeMenu="Configurações" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                    <Submenu nomeSubmenu="cfg1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                    <Submenu nomeSubmenu="cfg2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                    <Submenu nomeSubmenu="cfg3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                </Menu>
 
-    <!-- Main content -->
-    <div class="flex-1 bg-gray-100">
-      <router-link :to="selectedTab" class="absolute top-4 right-4">
-        Close
-      </router-link>
-      <component :is="selectedTab"></component>
-    </div>
-  </div>
+                <Menu nomeMenu="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
+                </Menu>
+            </ul>
+        </div>
+    </aside>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { Link } from '@inertiajs/vue3'
+import Menu from '@/Components/Sidebar/Menu.vue'
+import Submenu from '@/Components/Sidebar/Submenu.vue'
 
-const isOpen = ref(true)
-const selectedTab = ref('dashboard')
+defineProps({
+    toggleSidebar: Function,
+    isOpen: Boolean
+})
 
-// export { isOpen, selectedTab, Link }
+// const isOpen = ref(true)
+
+
 </script>
 
-<style>
-/* ... */
+<style lang="scss" scoped>
+
 </style>
