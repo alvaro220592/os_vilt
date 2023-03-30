@@ -1,8 +1,12 @@
+<!-- <Link :href="url" class="flex flex-row py-1 px-2 rounded-sm transition-all duration-200 hover:bg-gray-700"> -->
 <template>
-        <li>
-            <Link :href="url" class="flex flex-row py-1 px-2 rounded-sm transition-all duration-200 hover:bg-gray-700">
+        <li v-on:mouseover="iniciarAnimacaoIcone($event.currentTarget)" v-on:mouseout="pararAnimacaoIcone($event.currentTarget)">
+            <Link :href="url" class="flex flex-row py-1 px-2 rounded-lg transition-all duration-200 hover:bg-gray-700">
+                <!-- <span>
+                    <font-awesome-icon icon="fa-solid fa-caret-right" class="mr-4 text-md text-orange-500 opacity-0 transition-all duration-500" />
+                </span> -->
                 <span>
-                    <font-awesome-icon icon="fa-solid fa-chevron-right" class="mr-2 text-xs" />
+                    <font-awesome-icon icon="fa-solid fa-circle" class="mr-4 my-1 text-orange-500 text-[8px] transition-all duration-500 opacity-0" />
                 </span>
                 <span>
                     {{ nomeSubmenu }}
@@ -18,6 +22,19 @@
         nomeSubmenu: String,
         url: String
     })
+
+    const iniciarAnimacaoIcone = function (el) {
+        let icone = el.firstChild.querySelector('span > svg')
+        if (icone.classList.contains('opacity-0')) {
+            icone.classList.remove('opacity-0')
+        }
+    }
+    const pararAnimacaoIcone = function (el) {
+        let icone = el.firstChild.querySelector('span > svg')
+        if (!icone.classList.contains('opacity-0')) {
+            icone.classList.add('opacity-0')
+        }
+    }
 </script>
 
 <style scoped>

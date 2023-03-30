@@ -3,12 +3,12 @@
         <div class="flex flex-row whitespace-nowrap px-1 py-4 text-2xl border-b border-gray-700 overflow-hidden">
             <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
             <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Marca Aqui</span>
-            <font-awesome-icon icon="fa-solid fa-circle-chevron-left" class="right-0 ml-5 mt-1 text-3xl absolute overflow-x-visible text-orange-500 md:hidden" :class="{'hidden' : !isOpen}" @click="toggleSidebar" />
+            <font-awesome-icon icon="fa-solid fa-circle-chevron-left" class="right-0 ml-5 mt-1 text-3xl absolute overflow-x-visible text-orange-500 sm:hidden md:hidden" :class="{'hidden' : !isOpen}" @click="toggleSidebar" />
         </div>                
         
         <div class="px-2 pt-2 pb-4 menus overflow-hidden">
             <ul class="mt-10">
-                <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="handleToggleSidebar">
                     <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cad3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
@@ -33,10 +33,16 @@ import { Link } from '@inertiajs/vue3'
 import Menu from '@/Components/Sidebar/Menu.vue'
 import Submenu from '@/Components/Sidebar/Submenu.vue'
 
-defineProps({
+const props = defineProps({
     toggleSidebar: Function,
     isOpen: Boolean
 })
+
+const handleToggleSidebar = function () {
+    if (!props.isOpen) {
+        props.toggleSidebar()
+    }
+}
 
 // const isOpen = ref(true)
 
