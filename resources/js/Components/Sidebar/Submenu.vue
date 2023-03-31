@@ -2,9 +2,6 @@
 <template>
         <li v-on:mouseover="iniciarAnimacaoIcone($event.currentTarget)" v-on:mouseout="pararAnimacaoIcone($event.currentTarget)">
             <Link :href="url" class="flex flex-row py-1 px-2 rounded-lg transition-all duration-200">
-                <!-- <span>
-                    <font-awesome-icon icon="fa-solid fa-caret-right" class="mr-4 my-1 text-orange-500 text-sm transition-all duration-1000 opacity-0" />
-                </span> -->
                 <span>
                     <font-awesome-icon icon="fa-solid fa-circle" class="mr-4 my-0.5 text-orange-500 text-[8px] transition-all duration-500 opacity-0" />
                 </span>
