@@ -20,8 +20,10 @@
                     <Submenu nomeSubmenu="cfg3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                 </Menu>
 
-                <Menu nomeMenu="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
-                </Menu>
+                <Link :href="route('logout')" method="post">
+                    <Menu nomeMenu="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
+                    </Menu>
+                </Link>
             </ul>
         </div>
     </aside>
