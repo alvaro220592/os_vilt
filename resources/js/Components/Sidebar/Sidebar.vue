@@ -8,6 +8,11 @@
         
         <div class="px-2 pt-2 pb-4 menus overflow-hidden">
             <ul class="mt-10">
+                <Link :href="route('dashboard')">
+                    <Menu nomeMenu="Dashboard" icone="fa-solid fa-chart-simple" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
+                    </Menu>
+                </Link>
+                
                 <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="handleToggleSidebar">
                     <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
