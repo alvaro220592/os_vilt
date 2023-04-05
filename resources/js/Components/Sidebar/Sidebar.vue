@@ -14,7 +14,7 @@
                 </Link>
                 
                 <Menu nomeMenu="Cadastros" title="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="handleToggleSidebar">
-                    <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
+                    <Submenu nomeSubmenu="Clientes" :url="route('clients.index')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cad3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                 </Menu>

@@ -1,10 +1,10 @@
 <template>
 
-    <div class="flex flex-row flex-nowrap justify-center items-center my-4">
+    <div class="flex flex-row flex-nowrap justify-end items-center my-4">
         <Link 
             :href="links[0].url ? links[0].url : '#'" 
             v-html="prev_next(links[0].label, links[0].url)" 
-            class="py-2 px-4 rounded-md" 
+            class="py-2 px-4 rounded-md text-white transition-all duration-500 hover:text-orange-500"
             preserve-scroll
         >
         </Link>
@@ -12,8 +12,8 @@
         <Link v-for="(link, index) in renderizarLinks(links)"
             :key="index"
             :href="link.url"
-            class="py-1 px-2 rounded-sm"
-            :class="{'bg-teal-600 text-white' : link.active}"
+            class="transition-all duration-500 px-2 mx-1 rounded-sm "
+            :class="link.active ? 'py-1 bg-orange-500 text-black font-bold' : 'text-white hover:bg-purple-800'"
             preserve-scroll
             v-html="link.label">
         </Link>
@@ -21,7 +21,7 @@
         <Link 
             :href="links[links.length -1].url ? links[links.length -1].url : '#'" 
             v-html="prev_next(links[links.length -1].label, links[links.length -1].url)"
-            class="py-2 px-4 rounded-md"
+            class="py-2 px-4 rounded-md text-white transition-all duration-500 hover:text-orange-500"
             preserve-scroll
         >
         </Link>

@@ -1,5 +1,5 @@
 <template>
-    <div class="overflow-x-auto bg-white">
+    <div class="overflow-x-auto bg-white scroll_div">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <h1 class="text-xl text-gray-600 font-bold mb-10">Clientes</h1>
             <div class="overflow-x-auto">
@@ -25,8 +25,8 @@
                 </table>
             </div>
         </div>
-        <Pagination :links="clients.links" />
     </div>
+        <Pagination :links="clients.links" />
 </template>
 
 <script setup>
