@@ -24,7 +24,7 @@
                                 <div class="overflow-hidden">
                                     <table class="min-w-full"> -->
                     
-                        <div class="overflow-x-auto bg-white">
+                        <div class="overflow-x-auto bg-white scroll_div">
                             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="overflow-x-auto">
                                     <table class="min-w-full">
