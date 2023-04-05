@@ -1,6 +1,6 @@
 <template>
 
-    <div class="flex flex-row flex-nowrap justify-end items-center my-4">
+    <div class="flex flex-row flex-nowrap justify-center md:justify-end items-center my-4">
         <Link 
             :href="links[0].url ? links[0].url : '#'" 
             v-html="prev_next(links[0].label, links[0].url)" 
