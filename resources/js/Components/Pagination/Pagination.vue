@@ -4,7 +4,7 @@
         <Link 
             :href="links[0].url ? links[0].url : '#'" 
             v-html="prev_next(links[0].label, links[0].url)" 
-            class="py-2 px-4 rounded-md text-white transition-all duration-500 hover:text-orange-500"
+            class="py-2 px-4 rounded-md text-white transition-all duration-300 hover:text-orange-500"
             preserve-scroll
         >
         </Link>
@@ -12,8 +12,8 @@
         <Link v-for="(link, index) in renderizarLinks(links)"
             :key="index"
             :href="link.url"
-            class="transition-all duration-500 px-2 mx-1 rounded-sm "
-            :class="link.active ? 'py-1 bg-orange-500 text-black font-bold' : 'text-white hover:bg-purple-800'"
+            class="py-1 transition-all duration-300 px-2 mx-1 rounded-sm "
+            :class="link.active ? 'bg-orange-500 text-black' : 'text-white hover:bg-gray-600'"
             preserve-scroll
             v-html="link.label">
         </Link>
@@ -21,7 +21,7 @@
         <Link 
             :href="links[links.length -1].url ? links[links.length -1].url : '#'" 
             v-html="prev_next(links[links.length -1].label, links[links.length -1].url)"
-            class="py-2 px-4 rounded-md text-white transition-all duration-500 hover:text-orange-500"
+            class="py-2 px-4 rounded-md text-white transition-all duration-300 hover:text-orange-500"
             preserve-scroll
         >
         </Link>
