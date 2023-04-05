@@ -1,7 +1,7 @@
 <template>
+    <h1 class="text-xl text-white font-bold mb-4">Clientes</h1>
     <div class="overflow-x-auto bg-white scroll_div">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <h1 class="text-xl text-gray-600 font-bold mb-10">Clientes</h1>
             <div class="overflow-x-auto">
                 <table class="min-w-full">
                     <thead class="border-b">
@@ -35,7 +35,8 @@
     import Pagination from '@/Components/Pagination/Pagination.vue'
 
     const props = defineProps({
-        clients: Object
+        clients: Object,
+        titulo: String
     })
 </script>
 
