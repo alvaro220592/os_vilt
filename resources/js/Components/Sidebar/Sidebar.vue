@@ -9,24 +9,24 @@
         <div class="px-2 pt-2 pb-4 menus overflow-hidden">
             <ul class="mt-10">
                 <Link :href="route('dashboard')">
-                    <Menu nomeMenu="Dashboard" icone="fa-solid fa-chart-simple" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
+                    <Menu nomeMenu="Dashboard" title="Dashboard" icone="fa-solid fa-chart-simple" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
                     </Menu>
                 </Link>
                 
-                <Menu nomeMenu="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="handleToggleSidebar">
+                <Menu nomeMenu="Cadastros" title="Cadastros" icone="fa-solid fa-plus" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="handleToggleSidebar">
                     <Submenu nomeSubmenu="cad1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cad2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cad3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                 </Menu>
 
-                <Menu nomeMenu="Configurações" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
+                <Menu nomeMenu="Configurações" title="Configurações" icone="fa-solid fa-gear" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="true" @click="!isOpen ? isOpen = true : ''">
                     <Submenu nomeSubmenu="cfg1" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cfg2" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                     <Submenu nomeSubmenu="cfg3" :url="route('dashboard')" class="transition ease-in-out delay-150" :class="{'hidden' : !isOpen}" />
                 </Menu>
 
                 <Link :href="route('logout')" method="post">
-                    <Menu nomeMenu="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
+                    <Menu nomeMenu="Sair" title="Sair" icone="fa-solid fa-power-off" :classeDinamica="!isOpen ? 'opacity-0' : ''" :expande="false">
                     </Menu>
                 </Link>
             </ul>
