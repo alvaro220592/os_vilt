@@ -18,11 +18,11 @@ class ClientController extends Controller
     }
     
     public function create(){
-    
+        return inertia('Client/Form');
     }
     
     public function store(Request $request){
-    
+        dd($request->all());
     }
     
     public function edit($id){
