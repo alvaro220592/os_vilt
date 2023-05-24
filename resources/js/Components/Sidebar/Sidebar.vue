@@ -1,5 +1,5 @@
 <template>
-    <aside :open="isOpen" :class="{'w-12': !isOpen, 'w-64 sm:relative fixed': isOpen}" class="bg-gray-800 text-white min-h-screen top-0 xs:fixed left-0 z-30 transition-all duration-500">
+    <aside :open="isOpen" :class="{'w-12': !isOpen, 'w-48 sm:relative fixed': isOpen}" class="bg-gray-800 text-white min-h-screen top-0 xs:fixed left-0 z-30 transition-all duration-500">
         <div class="flex flex-row whitespace-nowrap px-1 py-4 text-2xl border-b border-gray-700 overflow-hidden">
             <span class="ml-2 mr-4"><font-awesome-icon icon="fa-solid fa-feather" /></span>
             <span class="transition ease-in-out delay-150" :class="!isOpen ? 'opacity-0' : ''">Marca Aqui</span>
@@ -56,6 +56,8 @@ const handleToggleSidebar = function () {
 
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+    aside {
+        position: fixed;
+    }
 </style>
