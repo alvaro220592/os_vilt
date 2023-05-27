@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Phone>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Email>
  */
-class PhoneFactory extends Factory
+class EmailFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class PhoneFactory extends Factory
     public function definition()
     {
         return [
-            'telefone' => fake()->phoneNumber()
-            // O client_id será definido direto na seeder de telefones ao executá-la
+            'email' => fake()->email()
         ];
     }
 }

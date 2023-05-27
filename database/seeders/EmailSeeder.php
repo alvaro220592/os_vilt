@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use App\Models\Email;
 use App\Models\Client;
-use App\Models\Phone;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class PhoneSeeder extends Seeder
+class EmailSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,7 @@ class PhoneSeeder extends Seeder
         $clients = Client::all();
 
         foreach ($clients as $client) {
-            Phone::factory()->create([
+            Email::factory()->create([
                 'client_id' => $client->id
             ]);
         }
