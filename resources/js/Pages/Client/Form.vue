@@ -52,7 +52,7 @@ export default {
 <script setup>
     import TextInput from '@/Components/TextInput.vue'
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-    import { Link, useForm } from '@inertiajs/vue3'
+    import { Link, useForm } from '@inertiajs/inertia-vue3'
     import PrimaryButton from '@/Components/PrimaryButton.vue';
 
     const form = useForm({

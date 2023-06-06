@@ -28,4 +28,12 @@ class Client extends Model
     public function state(){
         return $this->belongsToThrough(State::class, City::class, null, null, null, 'state_id');
     }
+
+    public function email(){
+        return $this->hasOne(Email::class, 'client_id');
+    }
+
+    public function telefone(){
+        return $this->hasOne(Phone::class, 'client_id');
+    }
 }

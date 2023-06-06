@@ -57,7 +57,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Link } from '@inertiajs/vue3'
+import { Link } from '@inertiajs/inertia-vue3'
 
 const isOpen = ref(true)
 const selectedTab = ref('dashboard')

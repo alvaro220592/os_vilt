@@ -42,3 +42,14 @@ Orçamentos e Faturamento: nesta seção, é possível gerar orçamentos para os
 Relatórios e Estatísticas: nesta seção, é possível gerar relatórios sobre o desempenho do sistema, incluindo estatísticas sobre o número de produtos em manutenção, a duração média do reparo, o custo médio do serviço, entre outras informações.
 
 Configurações: nesta seção, é possível configurar as opções do sistema, como a moeda utilizada para faturamento, as permissões de acesso dos usuários, etc.
+
+ =================================================================================
+|
+|   SOLUÇÃO DO PROBLEMA DO router.ts: Uncaught (in promise) TypeError: this.resolveComponent is not a function at n2.setPage (router.ts:378:33) at router.ts:323:19
+|
+|   parei o servidor npm, dei um npm run build, depois um npm run dev
+|   no app.js, troquei "import { createInertiaApp } from '@inertiajs/vue3';" por import { createInertiaApp } from '@inertiajs/inertia-vue3';
+|
+|   A importação do { Link } vem do mesmo lugar, então fiz a mesma substituição onde chama esse componente
+|
+ =======================================================================================
