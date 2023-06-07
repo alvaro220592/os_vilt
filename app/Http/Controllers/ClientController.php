@@ -16,6 +16,19 @@ class ClientController extends Controller
                 ->when(Request2::input('search'), function($query, $search) {
             
                 $query->where('nome', 'like', "%$search%");
+                $query->orWhere('sobrenome', 'like', "%$search%");
+                $query->orWhere('sobrenome', 'like', "%$search%");
+                $query->orWhere('cpf_cnpj', 'like', "%$search%");
+                $query->orWhere('num_endereco', 'like', "%$search%");
+                $query->orWhereHas('address', function($addr) use($search) {
+                    $addr->where('logradouro', 'like', "%$search%");
+                    $addr->orWhereHas('city', function($city) use ($search) {
+                        $city->where('cidade', 'like', "%$search%");
+                        $city->orWhereHas('state', function($state) use($search) {
+                            $state->where('sigla', 'like', "%$search%");
+                        });
+                    });
+                });
             
             })->paginate(10)->withQueryString(),
 
