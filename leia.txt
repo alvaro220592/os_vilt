@@ -25,6 +25,8 @@ Instalar Font Awesome Icons
 
 ======================================================
 
+DICAS DE ESTRUTURA PARA O SISTEMA
+
 Página Inicial: onde o usuário pode ter uma visão geral do sistema, com informações sobre o número de produtos em manutenção, as tarefas pendentes, etc.
 
 Gerenciamento de Clientes: nesta seção, é possível gerenciar informações sobre os clientes da empresa, incluindo seu nome, endereço, telefone, e-mail, etc.
@@ -42,6 +44,30 @@ Orçamentos e Faturamento: nesta seção, é possível gerar orçamentos para os
 Relatórios e Estatísticas: nesta seção, é possível gerar relatórios sobre o desempenho do sistema, incluindo estatísticas sobre o número de produtos em manutenção, a duração média do reparo, o custo médio do serviço, entre outras informações.
 
 Configurações: nesta seção, é possível configurar as opções do sistema, como a moeda utilizada para faturamento, as permissões de acesso dos usuários, etc.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+SOBRE OS MATERIAIS DO ESTABELECIMENTO USADOS NAS O.S.'s. Essa relação pode ser chamada de herança entre tabelas, pois os registros da tabela mãe funcionam como classes com dados gerais, equanto os registros da tabela filha funcionam como objetos destas classes
+
+Terá uma tabela mãe de materiais, que terá campos como 
+    ID: Identificador único do material.
+    Nome: Nome do material.
+    Descrição: Uma descrição mais detalhada do material.
+    Unidade de medida: A unidade de medida na qual o material é quantificado (ex: peça, metro, litro, etc.).
+    Preço: O preço unitário do material.
+    Estoque: Quantidade disponível em estoque desse material.
+    Data de criação: Data em que o material foi adicionado ao sistema.
+
+Terá uma tabela filha dos materiais, que trará informações específicas de cada unidade de um material como placa mãe, por exemplo. Terá campos como:
+    ID: Identificador único do material específico.
+    ID da tabela mãe: Chave estrangeira que referencia o material na tabela mãe.
+    Número de série: O número de série exclusivo para cada material específico.
+    Localização: Um campo para registrar a localização física do material, se necessário.
+    Data de fabricação: A data em que o material específico foi fabricado.
+    Data de aquisição: A data em que o material específico foi adquirido.
+    Status: Um campo para registrar o status do material específico (em uso, em manutenção, disponível, etc.).
+    Observações: Qualquer informação adicional relevante sobre o material específico.
+    Fornecedor: O nome ou ID do fornecedor do material.
+---------------------------------------------------------------------------------------------------------------------------------------------
 
  =================================================================================
 |
