@@ -44,22 +44,25 @@ class ClientController extends Controller
                 ->when(Request2::input('search'), function($query, $search) {
             
                 $query->whereHas('person', function($person) use ($search) {
-                    $person->where('nome', 'like', "%$search%");
-                    $person->orWhere('cpf_cnpj', 'like', "%$search%");
-                    $person->orWhere('num_endereco', 'like', "%$search%");
-                    $person->orWhereHas('address', function($addr) use($search) {
-                        $addr->where('logradouro', 'like', "%$search%");
-                        $addr->orWhereHas('city', function($city) use ($search) {
-                            $city->where('cidade', 'like', "%$search%");
-                            $city->orWhereHas('state', function($state) use($search) {
-                                $state->where('sigla', 'like', "%$search%");
+                    $person->where('nome', 'like', "%$search%"); // trazendo clientes que o nome bate com o que foi digitado na pesquisa
+                    $person->orWhere('cpf_cnpj', 'like', "%$search%"); // trazendo clientes que p cpf_cnpj bate com o que foi digitado na pesquisa
+                    $person->orWhere('num_endereco', 'like', "%$search%"); // trazendo clientes que o num_endereco bate com o que foi digitado na pesquisa
+
+                    $person->orWhereHas('address', function($addr) use($search) { // entrando no relacionamento de endereços
+                        $addr->where('logradouro', 'like', "%$search%"); // trazendo clientes que o logradouro bate com o que foi digitado
+
+                        $addr->orWhereHas('city', function($city) use ($search) { // entrando no relacionamento de cidades
+                            $city->where('cidade', 'like', "%$search%"); // trazendo clientes em que a cidade bate com o que foi digitado na pesquisa
+
+                            $city->orWhereHas('state', function($state) use($search) { // entrando no relacionamento de estados
+                                $state->where('sigla', 'like', "%$search%"); // trazendo clientes em que a sigla do estado bate com o que foi digitado na pesquisa
                             });
                         });
                     });
-                    $person->orWhereHas('telefone', function($telefone) use ($search) {
+                    $person->orWhereHas('telefone', function($telefone) use ($search) { // entrando no relacionamento de telefone
                         $telefone->where('telefone', 'like', "%$search%");
                     });
-                    $person->orWhereHas('email', function($email) use ($search) {
+                    $person->orWhereHas('email', function($email) use ($search) { // entrando no relacionamento de email
                         $email->where('email', 'like', "%$search%");
                     });
                 });
