@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Client;
+use App\Models\People;
 use App\Models\Phone;
 
 class PhoneSeeder extends Seeder
@@ -16,11 +16,11 @@ class PhoneSeeder extends Seeder
      */
     public function run()
     {
-        $clients = Client::all();
+        $people = People::all();
 
-        foreach ($clients as $client) {
+        foreach ($people as $person) {
             Phone::factory()->create([
-                'client_id' => $client->id
+                'person_id' => $person->id
             ]);
         }
     }

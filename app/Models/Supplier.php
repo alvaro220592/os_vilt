@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Email extends Model
+class Supplier extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email', 'person_id'];
+    protected $fillable = [
+        'cpf_cnpj',
+        'person_id'
+    ];
 }

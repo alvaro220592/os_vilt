@@ -17,14 +17,16 @@ class DatabaseSeeder extends Seeder
         // $this->call(StateSeeder::class);
         // $this->call(CitySeeder::class);
         // $this->call(AddressSeeder::class);
+        // $this->call(PeopleSeeder::class);
         // $this->call(ClientSeeder::class);
-        // \App\Models\User::factory(10)->create();
+        // $this->call(SupplierSeeder::class);
+        $this->call(PhoneSeeder::class);
+        $this->call(EmailSeeder::class);
 
+        // \App\Models\User::factory(10)->create();
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        // $this->call(PhoneSeeder::class);
-        $this->call(EmailSeeder::class);
     }
 }

@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Email;
 use App\Models\People;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class EmailSeeder extends Seeder
+class PeopleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +15,6 @@ class EmailSeeder extends Seeder
      */
     public function run()
     {
-        $people = People::all();
-
-        foreach ($people as $person) {
-            Email::factory()->create([
-                'person_id' => $person->id
-            ]);
-        }
+        People::factory()->count(300)->create();
     }
 }

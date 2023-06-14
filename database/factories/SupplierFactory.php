@@ -6,9 +6,9 @@ use App\Models\People;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Client>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Supplier>
  */
-class ClientFactory extends Factory
+class SupplierFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class ClientFactory extends Factory
      */
     public function definition()
     {
-        return [
+        return [            
             'person_id' => People::all()->pluck('id')->random()
         ];
     }

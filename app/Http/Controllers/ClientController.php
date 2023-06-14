@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Request as Request2;
 
 class ClientController extends Controller
 {
-    public function index(){
+    public function index_original(){
 
         return inertia('Client/Index', [
-            'clients' => Client::query()->with(['address.city.state', 'email', 'telefone'])
+            'clients' => Client::query()->with(['person.address.city.state', 'person.email', 'person.telefone'])
 
                 ->when(Request2::input('search'), function($query, $search) {
             
@@ -27,6 +27,40 @@ class ClientController extends Controller
                         $city->orWhereHas('state', function($state) use($search) {
                             $state->where('sigla', 'like', "%$search%");
                         });
+                    });
+                });
+            
+            })->paginate(10)->withQueryString(),
+
+            // 'filters' => Request2::only(['search'])
+        ]);
+    }
+
+    public function index(){
+
+        return inertia('Client/Index', [
+            'clients' => Client::query()->with(['person.address.city.state', 'person.email', 'person.telefone'])
+
+                ->when(Request2::input('search'), function($query, $search) {
+            
+                $query->whereHas('person', function($person) use ($search) {
+                    $person->where('nome', 'like', "%$search%");
+                    $person->orWhere('cpf_cnpj', 'like', "%$search%");
+                    $person->orWhere('num_endereco', 'like', "%$search%");
+                    $person->orWhereHas('address', function($addr) use($search) {
+                        $addr->where('logradouro', 'like', "%$search%");
+                        $addr->orWhereHas('city', function($city) use ($search) {
+                            $city->where('cidade', 'like', "%$search%");
+                            $city->orWhereHas('state', function($state) use($search) {
+                                $state->where('sigla', 'like', "%$search%");
+                            });
+                        });
+                    });
+                    $person->orWhereHas('telefone', function($telefone) use ($search) {
+                        $telefone->where('telefone', 'like', "%$search%");
+                    });
+                    $person->orWhereHas('email', function($email) use ($search) {
+                        $email->where('email', 'like', "%$search%");
                     });
                 });
             

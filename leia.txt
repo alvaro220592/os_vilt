@@ -52,21 +52,23 @@ Terá uma tabela mãe de materiais, que terá campos como
     ID: Identificador único do material.
     Nome: Nome do material.
     Descrição: Uma descrição mais detalhada do material.
-    Unidade de medida: A unidade de medida na qual o material é quantificado (ex: peça, metro, litro, etc.).
+    Unidade de medida(id chave estrangeira): A unidade de medida na qual o material é quantificado (ex: peça, metro, litro, etc.).
     Preço: O preço unitário do material.
-    Estoque: Quantidade disponível em estoque desse material.
-    Data de criação: Data em que o material foi adicionado ao sistema.
+    qtde_estoque: Quantidade disponível em estoque desse material.
+    estoque_critico: Número em que se considera que há poucas unidades
+    timestamps
 
 Terá uma tabela filha dos materiais, que trará informações específicas de cada unidade de um material como placa mãe, por exemplo. Terá campos como:
     ID: Identificador único do material específico.
     ID da tabela mãe: Chave estrangeira que referencia o material na tabela mãe.
     Número de série: O número de série exclusivo para cada material específico.
-    Localização: Um campo para registrar a localização física do material, se necessário.
+    Localização(id chave estrangeira): Um campo para registrar a localização física do material, se necessário.
     Data de fabricação: A data em que o material específico foi fabricado.
     Data de aquisição: A data em que o material específico foi adquirido.
-    Status: Um campo para registrar o status do material específico (em uso, em manutenção, disponível, etc.).
+    material_status_id(id chave estrangeira): Um campo para registrar o status do material específico (em uso, em manutenção, disponível, etc.).
     Observações: Qualquer informação adicional relevante sobre o material específico.
     Fornecedor: O nome ou ID do fornecedor do material.
+    timestamps
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
  =================================================================================

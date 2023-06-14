@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreignId('person_id')->references('id')->on('people')->onDelete('cascade');
             $table->timestamps();
         });
     }

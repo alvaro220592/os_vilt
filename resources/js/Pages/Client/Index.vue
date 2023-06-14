@@ -32,11 +32,11 @@
                     <tbody>
                         <tr v-for="client in clients.data" :key="client.id" class="border-b">
                             <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.id }}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.nome }} {{ client.sobrenome }}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.cpf_cnpj }}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.address.logradouro }}, {{ client.num_endereco }}, {{ client.address.city.cidade }} - {{ client.address.city.state.sigla }}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.email.email }}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.telefone.telefone }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.person.nome }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.person.cpf_cnpj }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.person.address.logradouro }}, {{ client.person.num_endereco }}, {{ client.person.address.city.cidade }} - {{ client.person.address.city.state.sigla }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.person.email.email }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">{{ client.person.telefone.telefone }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap flex justify-center items-center"><TableActions :visualizar="route('clients.show', client.id)" :editar="route('clients.edit', client.id)" :excluir="route('clients.destroy', client.id)" /></td>
                         </tr>
                     </tbody>

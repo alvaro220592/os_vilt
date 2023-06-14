@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use App\Models\Address;
 
 return new class extends Migration
 {
@@ -13,9 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('people', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('person_id')->references('id')->on('people')->onDelete('cascade');
+            $table->string('nome');
+            $table->string('cpf_cnpj');
+            $table->string('num_endereco');
+            $table->foreignIdFor(Address::class);
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('people');
     }
 };
