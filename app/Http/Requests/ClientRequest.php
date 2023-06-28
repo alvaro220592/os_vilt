@@ -24,7 +24,7 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'cpf_cnpj' => 'required',
+            'cpf_cnpj' => 'required|unique:people,cpf_cnpj,' . $this->id . 'id',
             'nome' => 'required'
         ];
     }
@@ -32,6 +32,7 @@ class ClientRequest extends FormRequest
     public function messages(){
         return [
             'cpf_cnpj.required' => 'O CPF/CNPJ é obrigatório',
+            'cpf_cnpj.unique' => 'CPF/CNPJ já cadastrado',
             'nome.required' => 'O nome é obrigatório'
         ];
     }

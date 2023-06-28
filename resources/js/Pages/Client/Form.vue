@@ -6,13 +6,15 @@
             <legend>&nbsp; Dados pessoais &nbsp;</legend>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 
-                <div class="grid grid-cols-1 grid-rows-1 gap-2">
-                    <TextInput type="text" placeholder="Nome" v-model="form.nome" />
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="nome" value="Nome" />
+                    <TextInput id="nome" type="text" v-model="form.nome" />
                     <span v-if="errors.nome" class="text-red-400">{{ errors.nome }}</span>
                 </div>
 
-                <div class="grid grid-cols-1 gap-2">
-                    <TextInput type="text" placeholder="CPF/CNPJ" v-model="form.cpf_cnpj" />
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="cpf_cnpj" value="CPF/CNPJ" />
+                    <TextInput id="cpf_cnpj" type="text" v-model="form.cpf_cnpj" />
                     <span v-if="errors.cpf_cnpj" class="text-red-400">{{ errors.cpf_cnpj }}</span>
                 </div>
             </div>
@@ -21,19 +23,47 @@
         <fieldset class="border border-solid rounded-sm border-gray-600 py-5 my-5">
             <legend>&nbsp; Endereço &nbsp;</legend>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <TextInput type="text" placeholder="CEP" v-model="form.cep" />
-                <TextInput type="text" placeholder="Endereço" v-model="form.logradouro" />
-                <TextInput type="text" placeholder="Nº" v-model="form.num_endereco" />
-                <TextInput type="text" placeholder="Cidade" v-model="form.cidade" />
-                <TextInput type="text" placeholder="UF" v-model="form.sigla" />
+
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="cep" value="CEP" />
+                    <TextInput id="cep" type="text" v-model="form.cep" />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="logradouro" value="Logradouro" />
+                    <TextInput id="logradouro" type="text" v-model="form.logradouro" />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="num_endereco" value="Nº" />
+                    <TextInput id="num_endereco" type="text" v-model="form.num_endereco" />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="cidade" value="Cidade" />
+                    <TextInput id="cidade" type="text" v-model="form.cidade" />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="uf" value="UF" />
+                    <TextInput id="uf" type="text" style="text-transform:uppercase" v-model="form.sigla" />
+                </div>
             </div>
         </fieldset>
 
         <fieldset class="border border-solid rounded-sm border-gray-600 py-5 my-5">
             <legend>&nbsp; Contato &nbsp;</legend>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <TextInput type="text" placeholder="Telefone" v-model="form.telefone" />
-                <TextInput type="text" placeholder="Email" v-model="form.email" />
+
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="telefone" value="Telefone" />
+                    <TextInput id="telefone" type="text" v-model="form.telefone" />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="email" value="Email" />
+                    <TextInput id="email" type="text" v-model="form.email" />
+                </div>
             </div>
         </fieldset>
         
@@ -59,6 +89,7 @@ export default {
 
 <script setup>
     import TextInput from '@/Components/TextInput.vue'
+    import InputLabel from '@/Components/InputLabel.vue'
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
     import { Link, useForm } from '@inertiajs/inertia-vue3'
     import PrimaryButton from '@/Components/PrimaryButton.vue';
