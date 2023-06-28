@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\People;
+use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +18,7 @@ class SupplierFactory extends Factory
     public function definition()
     {
         return [            
-            'person_id' => People::all()->pluck('id')->random()
+            'person_id' => Person::all()->pluck('id')->random()
         ];
     }
 }

@@ -1,12 +1,20 @@
 <template>
     <h1 class="text-xl text-white font-bold mb-4">Cadastro de cliente</h1>
+    
     <form @submit.prevent="store" method="post">
         <fieldset class="border border-solid rounded-sm border-gray-600 py-5 my-5">
             <legend>&nbsp; Dados pessoais &nbsp;</legend>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <TextInput type="text" placeholder="Nome" v-model="form.nome" />
-                <TextInput type="text" placeholder="Sobrenome" v-model="form.sobrenome" />
-                <TextInput type="text" placeholder="CPF/CNPJ" v-model="form.cpf_cnpj" />
+                
+                <div class="grid grid-cols-1 grid-rows-1 gap-2">
+                    <TextInput type="text" placeholder="Nome" v-model="form.nome" />
+                    <span v-if="errors.nome" class="text-red-400">{{ errors.nome }}</span>
+                </div>
+
+                <div class="grid grid-cols-1 gap-2">
+                    <TextInput type="text" placeholder="CPF/CNPJ" v-model="form.cpf_cnpj" />
+                    <span v-if="errors.cpf_cnpj" class="text-red-400">{{ errors.cpf_cnpj }}</span>
+                </div>
             </div>
         </fieldset>
         
@@ -54,10 +62,10 @@ export default {
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
     import { Link, useForm } from '@inertiajs/inertia-vue3'
     import PrimaryButton from '@/Components/PrimaryButton.vue';
+    import InputError from '@/Components/InputError.vue'
 
     const form = useForm({
         nome: null,
-        sobrenome: null,
         cpf_cnpj: null,
         num_endereco: null,
         cep: null,
@@ -71,6 +79,11 @@ export default {
     const store = () => {
         form.post(route('clients.store'), form)
     }
+
+    const props = defineProps({
+        errors: Object
+    })
+
 </script>
 
 <style lang="scss" scoped>

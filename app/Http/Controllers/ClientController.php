@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\State;
 use App\Models\Client;
+use App\Models\Person;
+use App\Models\Address;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientRequest;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Request as Request2;
 
 class ClientController extends Controller
@@ -49,7 +55,8 @@ class ClientController extends Controller
                     $person->orWhere('num_endereco', 'like', "%$search%"); // trazendo clientes que o num_endereco bate com o que foi digitado na pesquisa
 
                     $person->orWhereHas('address', function($addr) use($search) { // entrando no relacionamento de endereços
-                        $addr->where('logradouro', 'like', "%$search%"); // trazendo clientes que o logradouro bate com o que foi digitado
+                        $addr->where('logradouro', 'like', "%$search%");
+                        $addr->orWhere('cep', 'like', "%$search%"); // trazendo clientes que o logradouro bate com o que foi digitado
 
                         $addr->orWhereHas('city', function($city) use ($search) { // entrando no relacionamento de cidades
                             $city->where('cidade', 'like', "%$search%"); // trazendo clientes em que a cidade bate com o que foi digitado na pesquisa
@@ -81,8 +88,51 @@ class ClientController extends Controller
         return inertia('Client/Form');
     }
     
-    public function store(Request $request){
-        dd($request->all());
+    public function store(ClientRequest $request){
+        $data = $request->all();
+
+        // Person::create($request->validated());
+
+        // estado
+        $state = State::where('sigla', strtoupper($data['sigla']))->first();
+        if (!$state) {
+            $state = new State;
+            $state->fill($data);
+            // $state->save();
+        }
+
+        // cidade
+        $city = city::where('cidade', $data['cidade'])->first();
+        if (!$city) {
+            $city = new City;
+            $city->fill($data);
+            $city->state_id = $state->id;
+            // $city->save();
+        }
+        
+        // endereço
+        $address = Address::where('cep', $this->apenasNumeros($data['cep']))->first();
+        if (!$address) {
+            $address = new Address;
+            $address->fill($data);
+            $address->cidy_id = $city->id;
+            // $address->save();
+        }
+
+        // Pessoa
+        $person = new Person;
+        $person->fill($data);
+        $person->address_id = $address->id;
+        // $person->save();
+
+        // cliente
+        $client = new Client;
+        $client->person_id = $person->id;
+        // $client->save();
+
+        return redirect()->route('clients.index')->with('sucesso', 'Cadastro realizado!');
+
+        dd('final');
     }
     
     public function edit($id){

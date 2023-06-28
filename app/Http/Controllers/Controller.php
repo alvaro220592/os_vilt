@@ -10,4 +10,8 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function apenasNumeros($valor){
+        return preg_replace("/[^0-9]/", "", $valor);
+    }
 }

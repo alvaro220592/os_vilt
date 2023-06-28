@@ -3,6 +3,8 @@
         <Sidebar :isOpen="isOpen" :toggleSidebar="toggleSidebar" />
         
         <Main :isOpen="isOpen" :toggleSidebar="toggleSidebar">
+            <Erro></Erro>
+            <Sucesso></Sucesso>
             <slot />
         </Main>
     </div>
@@ -12,8 +14,11 @@
 import { ref } from 'vue'
 import Sidebar from '@/Components/Sidebar/Sidebar.vue'
 import Main from '@/Components/Main/Main.vue'
+import Erro from '@/Components/Flash/Erro.vue'
+import Sucesso from '@/Components/Flash/Sucesso.vue'
 
 const isOpen = ref(false)
+const open = ref(true)
 
 const toggleSidebar = function () {
     // Este é o toggle para exibir/ocultar
