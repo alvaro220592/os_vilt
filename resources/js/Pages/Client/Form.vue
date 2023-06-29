@@ -26,7 +26,7 @@
 
                 <div class="flex flex-col gap-2">
                     <InputLabel for="cep" value="CEP" />
-                    <TextInput id="cep" type="text" v-model="form.cep" />
+                    <TextInput id="cep" type="text" @keyup="executarBuscaCep" v-model="form.cep" />
                 </div>
 
                 <div class="flex flex-col gap-2">
@@ -94,12 +94,14 @@ export default {
     import { Link, useForm } from '@inertiajs/inertia-vue3'
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import InputError from '@/Components/InputError.vue'
-
+    import useBuscaCep from '@/Composables/useBuscaCep.js'
+    import showToast from '@/Composables/useSwal2Toast.js'
+    
     const form = useForm({
         nome: null,
         cpf_cnpj: null,
         num_endereco: null,
-        cep: null,
+        cep: '',
         logradouro: null,
         cidade: null,
         sigla: null,
@@ -114,6 +116,28 @@ export default {
     const props = defineProps({
         errors: Object
     })
+
+    const definirFormBuscaCep = (valorLogradouro, valorLocalidade, valorUf) => {
+        form.logradouro = valorLogradouro
+        form.cidade = valorLocalidade
+        form.sigla = valorUf
+    }
+
+    const executarBuscaCep = async () => {
+        if (form.cep.length == 8) {
+            const { resultadoCep, cepNaoEncontrado } = await useBuscaCep(form.cep);
+            if (!cepNaoEncontrado.value) {
+                const res = resultadoCep.value;
+                definirFormBuscaCep(res.logradouro, res.localidade, res.uf)
+                document.getElementById('num_endereco').focus()
+
+            } else {
+                definirFormBuscaCep(null, null, null)
+                showToast('error', 'CEP não encontrado')
+                
+            }
+        }
+    };
 
 </script>
 

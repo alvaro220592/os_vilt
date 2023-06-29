@@ -81,3 +81,9 @@ Terá uma tabela filha dos materiais, que trará informações específicas de c
 |   A importação do { Link } vem do mesmo lugar, então fiz a mesma substituição onde chama esse componente
 |
  =======================================================================================
+
+ instalar sweetalert2:
+    npm install sweetalert2
+
+    import Swal from 'sweetalert2';
+    Swal.fire('Olá!', 'Este é um exemplo de alerta.', 'success');
